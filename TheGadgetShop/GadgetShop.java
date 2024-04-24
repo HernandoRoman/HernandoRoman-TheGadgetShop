@@ -10,7 +10,7 @@ public class GadgetShop implements ActionListener {
             sizeTextField, memoryTextField, downloadMusicTExtField, deleteMusicMP3TextField;
     private JTextField creditTextField, displayNumberTextField, phoneNumberTextField, durationTextField;
     private JButton addMobileButton, addMP3Button, makeACallButton, viewAllButton, clearButton, addCreditButton,
-            downloadMusicButton, deleteMusicMP3Button;
+            downloadMusicButton, deleteMusicMP3Button, exitButton;
 
     private JTextArea textAreaShowData; // TextArea to show data
 
@@ -22,7 +22,7 @@ public class GadgetShop implements ActionListener {
 
     private void createGUI() {
         frame = new JFrame("The Gadget Shop");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Desactiva la opción de maximizar
         frame.setResizable(false);
         frame.setSize(800, 800);
@@ -65,7 +65,7 @@ public class GadgetShop implements ActionListener {
         JLabel memoryLabel = new JLabel("Memory:");
         memoryTextField = new JTextField(20);
 
-        JLabel IdMobileLabel = new JLabel("Select Id Mobile To Call:");
+        JLabel IdMobileLabel = new JLabel("Select Id Mobile To (Call or Add Credit):");
         IdMobileTextField = new JTextField(20);
 
         JLabel phoneNumberLabel = new JLabel("Phone Number:");
@@ -151,6 +151,10 @@ public class GadgetShop implements ActionListener {
         clearButton.addActionListener(this);
         buttonPanel.add(clearButton);
 
+        exitButton = new JButton("Exit");
+        exitButton.addActionListener(this);
+        buttonPanel.add(exitButton);
+
         // JPanel mobilePanel = new JPanel(new GridLayout(0, 2, 20, 10));
         // mobilePanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
         // //mobilePanel.setBackground(Color.RED);
@@ -197,11 +201,24 @@ public class GadgetShop implements ActionListener {
             downloadMusic();
         } else if (source == deleteMusicMP3Button) {
             deleteMusicMP3();
+        }else if (source == exitButton) {
+            exitButton();
         }
 
     }
 
-    public void addMobile() {
+    private void exitButton() 
+    {
+        int choice = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Exit?", "Exit Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (choice == JOptionPane.YES_OPTION)
+         {
+            JOptionPane.showMessageDialog(frame, "Goodbye!");
+            frame.dispose(); // Close the JFrame
+        }
+    }
+
+    public void addMobile() 
+    {
         try {
 
             memoryTextField.setText("");
