@@ -25,12 +25,12 @@ public class Mobile extends Gadget
         if (credit > 0)
         {
             this.callCredit +=credit;
-            System.out.println("Credit added successfully!\n");
+            System.out.println("Credit added successfully!");
         }
         
         else 
         {
-            System.out.println("Invalid input: please enter a positive amount \n");
+            System.out.println("Invalid input: please enter a positive amount");
         }
 
     }

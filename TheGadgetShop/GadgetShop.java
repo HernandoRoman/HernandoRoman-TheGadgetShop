@@ -217,6 +217,7 @@ public class GadgetShop implements ActionListener {
             clear();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter valid values.");
+            clear();
         }
     }
 
@@ -236,6 +237,7 @@ public class GadgetShop implements ActionListener {
             clear();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter valid values.");
+            clear();
         }
     }
 
@@ -272,12 +274,15 @@ public class GadgetShop implements ActionListener {
 
                 } else {
                     JOptionPane.showMessageDialog(frame, "This is not a mobile");
+                    clear();
                 }
             } else {
                 JOptionPane.showMessageDialog(frame, "Invalid display number");
+                clear();
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter valid values.");
+            clear();
         }
     }
 
@@ -293,23 +298,28 @@ public class GadgetShop implements ActionListener {
                     int amount = Integer.parseInt(creditTextField.getText());
                     if (amount < 0) {
                         JOptionPane.showMessageDialog(frame, "Please enter a Valid Amount!");
+                        IdMobileTextField.setText("");
                         creditTextField.setText("");
                         return;
                     }
                     mobile.addCredit(amount);
                     textAreaShowData
-                            .append("Mobile Id: " + (idMobile + 1) + " - Credit added successfully" + amount + "\n");
+                            .append("Mobile Id: " + (idMobile + 1) + " - Credit added successfully £" + amount);
                     JOptionPane.showMessageDialog(frame, "Credit added successfully!");
                     creditTextField.setText("");
+                    textAreaShowData.append("\n");
                     viewAll();
                 } else {
                     JOptionPane.showMessageDialog(frame, "This is not a mobile device.");
+                    clear();
                 }
             } else {
                 JOptionPane.showMessageDialog(frame, "Invalid mobile ID.");
+                clear();
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter a valid number.");
+            clear();
         }
     }
 
@@ -352,12 +362,15 @@ public class GadgetShop implements ActionListener {
 
                 } else {
                     JOptionPane.showMessageDialog(frame, "This is not an MP3 device.");
+                    clear();
                 }
             } else {
                 JOptionPane.showMessageDialog(frame, "Invalid MP3 ID.");
+                clear();
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter a valid number.");
+            clear();
         }
     }
 
@@ -384,13 +397,13 @@ public class GadgetShop implements ActionListener {
                         textAreaShowData.append("MP3 Id: " + (idMP3 + 1) + " - " + result + " " + music + " MB\n");
                         System.out.println("MP3 Id: " + (idMP3 + 1) + " - " + result + " " + music + " MB\n");
                         IdMP3TExtField.setText("");
-                        downloadMusicTExtField.setText("");
+                        deleteMusicMP3TextField.setText("");
                         textAreaShowData.append("\n");
                         viewAll();
                     } else {
                         JOptionPane.showMessageDialog(frame, "Sorry!. Music downloaded not Was Successfully!");
                         IdMP3TExtField.setText("");
-                        downloadMusicTExtField.setText("");
+                        deleteMusicMP3TextField.setText("");
                         clear();
                         textAreaShowData.append(
                                 "Error: The memory is less than the space needed, please add positive value" + "\n");
@@ -400,17 +413,21 @@ public class GadgetShop implements ActionListener {
                     }
                 } else {
                     JOptionPane.showMessageDialog(frame, "This is not an MP3 device.");
+                    clear();
                 }
             } else {
                 JOptionPane.showMessageDialog(frame, "Invalid MP3 ID.");
+                clear();
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter a valid number.");
+            clear();
         }
     }
 
-    public void viewAll() {
-
+    public void viewAll() 
+    {
+        textAreaShowData.append("");
         // Appending a header for displaying all gadgets
         textAreaShowData.append("Display Gadgets:\n");
         System.out.println("Display Gadgets:\n");
@@ -419,8 +436,9 @@ public class GadgetShop implements ActionListener {
             textAreaShowData.append("\n");
             System.out.println("Id: " + (gadgets.indexOf(gadget) + 1) + "\n " + gadget.display() + "\n");
             gadget.display();
+           
         }
-        textAreaShowData.append("");
+        textAreaShowData.append("---------------------------------------------------------------\n");
 
     }
 
@@ -437,6 +455,9 @@ public class GadgetShop implements ActionListener {
         textAreaShowData.append("");
         textAreaShowData.setText("");
         IdMobileTextField.setText("");
+        deleteMusicMP3TextField.setText("");
+        downloadMusicTExtField.setText("");
+        IdMP3TExtField.setText("");
 
     }
 

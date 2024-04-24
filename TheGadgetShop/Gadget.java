@@ -45,6 +45,6 @@ public class Gadget
     
    public String display()
    {
-       return ("Model: "+model+"\n Price: £" +price+"\n Weight: "+weight+"grams \n Size: " +size); 
+       return ("Model: "+model+"\n Price: £" +price+"\n Weight: "+weight+" grams \n Size: " +size); 
    }
 }
