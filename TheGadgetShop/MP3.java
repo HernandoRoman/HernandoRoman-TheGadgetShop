@@ -17,15 +17,17 @@ public class MP3 extends Gadget
   }
   
   
-   public void downloadingMusic(double needMemory)
+   public String downloadMusic(double memoryRequered)
   {
-      if(needMemory > 0)
+      if(memoryRequered <= memory)
       {
-          memory += needMemory;
+          memory -= memoryRequered;
+          return "Music downloaded successfully!";
+          
       }
       else
       {
-          System.out.println ("Error: The memory is less than the space needed, please add positive value");
+          return null;
       }
   }
   

@@ -10,6 +10,7 @@ public class GadgetShop implements ActionListener
     private JTextField IdMobileTextField,IdMP3TExtField, modelTextField, weightTextField, priceTextField, sizeTextField,memoryTextField, downloadMusicTExtField, deleteMusicMP3TextField;
     private JTextField creditTextField, displayNumberTextField, phoneNumberTextField, durationTextField;
     private JButton addMobileButton, addMP3Button, makeACallButton, viewAllButton, clearButton, addCreditButton, downloadMusicButton, deleteMusicMP3Button;
+    
     private JTextArea textAreaShowData; // TextArea to show data
 
     private ArrayList<Gadget> gadgets = new ArrayList<>();
@@ -58,7 +59,7 @@ public class GadgetShop implements ActionListener
         JLabel sizeLabel = new JLabel("Size:");
         sizeTextField = new JTextField(20);
 
-        JLabel creditLabel = new JLabel("Credit:");
+        JLabel creditLabel = new JLabel("Add Credit:");
         creditTextField = new JTextField(20);
 
         JLabel memoryLabel = new JLabel("Memory:");
@@ -112,9 +113,6 @@ public class GadgetShop implements ActionListener
         inputPanel.add(deleteMusicMP3Label);
         inputPanel.add(deleteMusicMP3TextField);
         
-
-
-
         // Button panel for other buttons
         JPanel buttonPanel = new JPanel(new GridLayout(0, 1, 0, 10));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
@@ -151,14 +149,13 @@ public class GadgetShop implements ActionListener
 
         clearButton = new JButton("Clear");
         clearButton.addActionListener(this);
-        buttonPanel.add(clearButton);
-        
+        buttonPanel.add(clearButton);    
         
 
         // JPanel mobilePanel = new JPanel(new GridLayout(0, 2, 20, 10));
         // mobilePanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
         // //mobilePanel.setBackground(Color.RED);
-        // contentPane.add(mobilePanel, BorderLayout.CENTER);      
+        // contentPane.add(mobilePanel, BorderLayout.CENTER);   
 
         
         
@@ -167,10 +164,6 @@ public class GadgetShop implements ActionListener
         // makeCallButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
         // //makeCallButtonPanel.setBackground(Color.RED);
         // contentPane.add(makeCallButtonPanel, BorderLayout.EAST);
-
-        
-
-        
 
         // Create the panel to hold the text area
         JPanel textAreaPanel = new JPanel(new BorderLayout());
@@ -203,7 +196,12 @@ public class GadgetShop implements ActionListener
             clear();
         }else if(source == addCreditButton){
             addCredit();
+        }else if(source == downloadMusicButton){
+            downloadMusic();
+        }else if(source == deleteMusicMP3Button){
+            //delete();
         }
+        
     }
 
     public void addMobile() {
@@ -305,6 +303,7 @@ public class GadgetShop implements ActionListener
                         return;
                     }
                     mobile.addCredit(amount);
+                    textAreaShowData.append("Mobile Id: " + (idMobile + 1) + " - Credit added successfully" + amount + "\n");
                     JOptionPane.showMessageDialog(frame, "Credit added successfully!");
                     creditTextField.setText("");
                     viewAll();
@@ -318,6 +317,56 @@ public class GadgetShop implements ActionListener
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter a valid number.");
         }
     }
+    
+    public void downloadMusic() {
+    try {
+        String idMP3Str = IdMP3TExtField.getText();
+        int idMP3 = Integer.parseInt(idMP3Str) - 1;
+
+        if (idMP3 >= 0 && idMP3 < gadgets.size()) {
+            Gadget gadget = gadgets.get(idMP3);
+            if (gadget instanceof MP3) {
+                MP3 mp3 = (MP3) gadget;
+                String music = downloadMusicTExtField.getText();
+                if(Double.parseDouble(music)< 0)
+                {
+                   JOptionPane.showMessageDialog(frame, "Sorry!. Please enter a Valid MB!"); 
+                   IdMP3TExtField.setText("");
+                    downloadMusicTExtField.setText("");
+                   return;
+                }
+                 var result = mp3.downloadMusic(Double.parseDouble(music));
+                 if(result != null)
+                 {
+                    JOptionPane.showMessageDialog(frame, "Music downloaded successfully!");
+                    textAreaShowData.append("MP3 Id: " + (idMP3 + 1) + " - " + result + " " + music + " MB\n");
+                    System.out.println("MP3 Id: " + (idMP3 + 1) + " - " + result + " " + music + " MB\n");
+                    IdMP3TExtField.setText("");
+                    downloadMusicTExtField.setText("");
+                    textAreaShowData.append("\n");
+                    viewAll(); 
+                 }    
+                 else
+                 {
+                     JOptionPane.showMessageDialog(frame, "Sorry!. Music downloaded not Was Successfully!");
+                     IdMP3TExtField.setText("");
+                     downloadMusicTExtField.setText("");
+                     clear();
+                     textAreaShowData.append("Error: The memory is less than the space needed, please add positive value" + "\n");
+                     System.out.println("Error: The memory is less than the space needed, please add positive value " + "\n");
+                     return;
+                 }
+                
+            } else {
+                JOptionPane.showMessageDialog(frame, "This is not an MP3 device.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(frame, "Invalid MP3 ID.");
+        }
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter a valid number.");
+    }
+}
     
     
     public void viewAll() {
