@@ -8,8 +8,7 @@ public class GadgetShop implements ActionListener {
     private JFrame frame;
     private JTextField IdMobileTextField, IdMP3TExtField, modelTextField, weightTextField, priceTextField,
             sizeTextField, memoryTextField, downloadMusicTExtField, deleteMusicMP3TextField;
-    private JTextField creditTextField, addCreditTextField, displayNumberTextField, phoneNumberTextField,
-            durationTextField;
+    private JTextField creditTextField,addCreditTextField, displayNumberTextField, phoneNumberTextField, durationTextField;
     private JButton addMobileButton, addMP3Button, makeACallButton, viewAllButton, clearButton, addCreditButton,
             downloadMusicButton, deleteMusicMP3Button, exitButton;
 
@@ -23,10 +22,10 @@ public class GadgetShop implements ActionListener {
 
     private void createGUI() {
         frame = new JFrame("The Gadget Shop");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Desactiva la opción de maximizar
         frame.setResizable(false);
-        frame.setSize(2000, 800);
+        frame.setSize(800, 800);
 
         JPanel contentPane = new JPanel(new BorderLayout());
         contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -44,7 +43,7 @@ public class GadgetShop implements ActionListener {
 
         // Input panel for mobile details
         JPanel inputPanel = new JPanel(new GridLayout(0, 2, 10, 10));
-        inputPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
         // inputPanel.setBackground(Color.BLUE);
         contentPane.add(inputPanel, BorderLayout.WEST);
 
@@ -165,7 +164,7 @@ public class GadgetShop implements ActionListener {
         // Create the panel to hold the text area
         JPanel textAreaPanel = new JPanel(new BorderLayout());
         textAreaPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-        contentPane.add(textAreaPanel, BorderLayout.PAGE_END);
+        contentPane.add(textAreaPanel, BorderLayout.SOUTH);
 
         textAreaShowData = new JTextArea(20, 20);
         textAreaShowData.setEditable(false);
@@ -197,22 +196,24 @@ public class GadgetShop implements ActionListener {
             downloadMusic();
         } else if (source == deleteMusicMP3Button) {
             deleteMusicMP3();
-        } else if (source == exitButton) {
+        }else if (source == exitButton) {
             exitButton();
         }
 
     }
 
-    private void exitButton() {
-        int choice = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Exit?", "Exit Confirmation",
-                JOptionPane.YES_NO_CANCEL_OPTION);
-        if (choice == JOptionPane.YES_OPTION) {
+    private void exitButton() 
+    {
+        int choice = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Exit?", "Exit Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (choice == JOptionPane.YES_OPTION)
+         {
             JOptionPane.showMessageDialog(frame, "Thank You. Goodbye!");
             frame.dispose(); // Close the JFrame
         }
     }
 
-    public void addMobile() {
+    public void addMobile() 
+    {
         try {
 
             memoryTextField.setText("");
@@ -223,8 +224,8 @@ public class GadgetShop implements ActionListener {
             int credit = Integer.parseInt(creditTextField.getText());
             Mobile newMobile = new Mobile(model, price, weight, size, credit);
             gadgets.add(newMobile);
-            JOptionPane.showMessageDialog(frame, "A new mobile is saved");
             viewAll();
+            JOptionPane.showMessageDialog(frame, "A new mobile is saved");
             clearOnlyFields();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter valid values.");
@@ -243,8 +244,8 @@ public class GadgetShop implements ActionListener {
             String size = sizeTextField.getText();
             MP3 newMP3 = new MP3(memory, model, price, weight, size);
             gadgets.add(newMP3);
-            JOptionPane.showMessageDialog(frame, "A new MP3 is added");
             viewAll();
+            JOptionPane.showMessageDialog(frame, "A new MP3 is added");
             clearOnlyFields();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter valid values.");
@@ -386,7 +387,8 @@ public class GadgetShop implements ActionListener {
         }
     }
 
-    public void deleteMusicMP3() {
+    public void deleteMusicMP3() 
+    {
         try {
 
             String idMP3Str = IdMP3TExtField.getText();
@@ -437,7 +439,8 @@ public class GadgetShop implements ActionListener {
         }
     }
 
-    public void viewAll() {
+    public void viewAll() 
+    {
         textAreaShowData.append("");
         // Appending a header for displaying all gadgets
         textAreaShowData.append("Display Gadgets:\n");
@@ -447,7 +450,7 @@ public class GadgetShop implements ActionListener {
             textAreaShowData.append("\n");
             System.out.println("Id: " + (gadgets.indexOf(gadget) + 1) + "\n " + gadget.display() + "\n");
             gadget.display();
-
+           
         }
         textAreaShowData.append("---------------------------------------------------------------\n");
 
@@ -490,6 +493,7 @@ public class GadgetShop implements ActionListener {
         addCreditTextField.setText("");
 
     }
+
 
     public static void main(String[] args) {
         GadgetShop GadgetShop = new GadgetShop();
