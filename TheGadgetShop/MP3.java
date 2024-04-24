@@ -30,13 +30,13 @@ public class MP3 extends Gadget
   }
   
   
+  @Override
     public String display()
-  {
-      super.display();
-      
-      return ("Available memory " + memory);
-      
-  }
+    {
+        // Calls the display method of the superclass (presumably Gadget1) to get basic gadget information,
+        // Concatenates information about the available memory to the returned string
+        return super.display() + "\n " + "AVAILABLE MEMORY: " + memory + " MB";
+    }
   
   
 }

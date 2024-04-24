@@ -35,15 +35,27 @@ public class Mobile extends Gadget
     }
     
    
-    public void makeCall (String phoneNumber , int duration)
+    public String makeCall (String phoneNumber , int duration)
     {
-        if (callCredit>=duration)
+        if (duration > 0 && callCredit >= duration)
         {
-            System.out.println("Make a call to " + phoneNumber + "for " + duration + "minute" );
+            callCredit -= duration;
+            return("Make a call to " + phoneNumber + " for " + duration + " minute \n" );
+            
         }
         else
         {
-           System.out.println("your balance is insuficiet, please top up and try again");
+            return null;
+           //return("your balance is insuficiet, please top up and try again");
         }
+    }
+    
+    @Override
+    public String display()
+    {
+        // Calls the display method of the superclass (presumably to display basic gadget information)
+        // Concatenates information about the remaining calling credit to the returned string
+        return super.display() + "\n " + " CALLING CREDIT: " + callCredit + " MINUTES.";
+
     }
 }
