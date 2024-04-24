@@ -80,7 +80,7 @@ public class GadgetShop implements ActionListener {
         JLabel addCreditLabel = new JLabel("Add Credit:");
         addCreditTextField = new JTextField(20);
 
-        JLabel IdMP3Label = new JLabel("Select Id Mobile To (Download or Delete) Music:");
+        JLabel IdMP3Label = new JLabel("Select Id MP3 To (Download or Delete) Music:");
         IdMP3TExtField = new JTextField(20);
 
         JLabel downLoadMusicLabel = new JLabel("Download Music:");
@@ -105,12 +105,12 @@ public class GadgetShop implements ActionListener {
         inputPanel.add(IdMobileTextField);
         inputPanel.add(phoneNumberLabel);
         inputPanel.add(phoneNumberTextField);
-        inputPanel.add(addCreditLabel);
-        inputPanel.add(addCreditTextField);
         inputPanel.add(durationLabel);
         inputPanel.add(durationTextField);
         inputPanel.add(displayNumberLabel);
         inputPanel.add(displayNumberTextField);
+        inputPanel.add(addCreditLabel);
+        inputPanel.add(addCreditTextField);
         inputPanel.add(IdMP3Label);
         inputPanel.add(IdMP3TExtField);
         inputPanel.add(downLoadMusicLabel);
