@@ -8,7 +8,7 @@ public class GadgetShop implements ActionListener {
     private JFrame frame;
     private JTextField IdMobileTextField, IdMP3TExtField, modelTextField, weightTextField, priceTextField,
             sizeTextField, memoryTextField, downloadMusicTExtField, deleteMusicMP3TextField;
-    private JTextField creditTextField, displayNumberTextField, phoneNumberTextField, durationTextField;
+    private JTextField creditTextField,addCreditTextField, displayNumberTextField, phoneNumberTextField, durationTextField;
     private JButton addMobileButton, addMP3Button, makeACallButton, viewAllButton, clearButton, addCreditButton,
             downloadMusicButton, deleteMusicMP3Button, exitButton;
 
@@ -59,7 +59,7 @@ public class GadgetShop implements ActionListener {
         JLabel sizeLabel = new JLabel("Size:");
         sizeTextField = new JTextField(20);
 
-        JLabel creditLabel = new JLabel("Add Credit:");
+        JLabel creditLabel = new JLabel("Credit:");
         creditTextField = new JTextField(20);
 
         JLabel memoryLabel = new JLabel("Memory:");
@@ -76,6 +76,9 @@ public class GadgetShop implements ActionListener {
 
         JLabel displayNumberLabel = new JLabel("Display Number:");
         displayNumberTextField = new JTextField(20);
+
+        JLabel addCreditLabel = new JLabel("Add Credit:");
+        addCreditTextField = new JTextField(20);
 
         JLabel IdMP3Label = new JLabel("Select Id Mobile To (Download or Delete) Music:");
         IdMP3TExtField = new JTextField(20);
@@ -102,6 +105,8 @@ public class GadgetShop implements ActionListener {
         inputPanel.add(IdMobileTextField);
         inputPanel.add(phoneNumberLabel);
         inputPanel.add(phoneNumberTextField);
+        inputPanel.add(addCreditLabel);
+        inputPanel.add(addCreditTextField);
         inputPanel.add(durationLabel);
         inputPanel.add(durationTextField);
         inputPanel.add(displayNumberLabel);
@@ -212,7 +217,7 @@ public class GadgetShop implements ActionListener {
         int choice = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Exit?", "Exit Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
         if (choice == JOptionPane.YES_OPTION)
          {
-            JOptionPane.showMessageDialog(frame, "Goodbye!");
+            JOptionPane.showMessageDialog(frame, "Thank You. Goodbye!");
             frame.dispose(); // Close the JFrame
         }
     }
@@ -312,11 +317,11 @@ public class GadgetShop implements ActionListener {
                 Gadget gadget = gadgets.get(idMobile);
                 if (gadget instanceof Mobile) {
                     Mobile mobile = (Mobile) gadget;
-                    int amount = Integer.parseInt(creditTextField.getText());
+                    int amount = Integer.parseInt(addCreditTextField.getText());
                     if (amount < 0) {
                         JOptionPane.showMessageDialog(frame, "Please enter a Valid Amount!");
                         IdMobileTextField.setText("");
-                        creditTextField.setText("");
+                        addCreditTextField.setText("");
                         return;
                     }
                     mobile.addCredit(amount);
@@ -324,7 +329,7 @@ public class GadgetShop implements ActionListener {
                     textAreaShowData
                             .append("Mobile Id: " + (idMobile + 1) + " - Credit added successfully £" + amount + "\n");
                     IdMobileTextField.setText("");
-                    creditTextField.setText("");
+                    addCreditTextField.setText("");
                     textAreaShowData.append("\n");
                     viewAll();
                 } else {
@@ -477,6 +482,7 @@ public class GadgetShop implements ActionListener {
         deleteMusicMP3TextField.setText("");
         downloadMusicTExtField.setText("");
         IdMP3TExtField.setText("");
+        addCreditTextField.setText("");
 
     }
 
