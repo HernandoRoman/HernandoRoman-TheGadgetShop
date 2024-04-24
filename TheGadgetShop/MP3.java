@@ -31,6 +31,23 @@ public class MP3 extends Gadget
       }
   }
   
+    public String deleteMusic(int memoryFree)
+    {
+        // Check if the memory freed after deleting the music is non-negative
+        if (memoryFree >= 0)
+        {
+            // If it's non-negative, add the freed memory to the available memory
+            memory += memoryFree;
+            // Return true indicating the music was successfully deleted
+            return "Music deleted successfully!";
+        }
+        else
+        {
+            // If it's negative, return false indicating deletion failure
+            return null;
+        }
+    }
+  
   
   @Override
     public String display()
