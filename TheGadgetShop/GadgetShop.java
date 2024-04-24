@@ -13,12 +13,9 @@ public class GadgetShop implements ActionListener {
 
     private ArrayList<Gadget> gadgets = new ArrayList<>();
 
-    public static void main(String[] args) 
+    
+    public GadgetShop()
     {
-         GadgetShop GadgetShop = new GadgetShop();
-    }
-
-    public GadgetShop() {
         createGUI();
     }
 
@@ -230,5 +227,11 @@ public void clear() {
     textAreaShowData.append("");
     textAreaShowData.append("");
 }
+
+public static void main(String[] args) 
+    {
+         GadgetShop GadgetShop = new GadgetShop();
+    }
+
 
 }
