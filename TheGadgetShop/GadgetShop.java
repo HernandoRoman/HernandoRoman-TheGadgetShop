@@ -56,7 +56,7 @@ public class GadgetShop implements ActionListener {
         JLabel weightLabel = new JLabel("Weight:");
         weightTextField = new JTextField(20);
 
-        JLabel sizeLabel = new JLabel("Size:");
+        JLabel sizeLabel = new JLabel("Size (12 mm x 55 mm x 5 mm):");
         sizeTextField = new JTextField(20);
 
         JLabel creditLabel = new JLabel("Credit:");
@@ -232,11 +232,11 @@ public class GadgetShop implements ActionListener {
             int weight = Integer.parseInt(weightTextField.getText());
             String size = sizeTextField.getText();
             int credit = Integer.parseInt(creditTextField.getText());
-
             Mobile newMobile = new Mobile(model, price, weight, size, credit);
             gadgets.add(newMobile);
+            viewAll();
             JOptionPane.showMessageDialog(frame, "A new mobile is saved");
-            clear();
+            clearOnlyFields();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter valid values.");
             clear();
@@ -252,11 +252,11 @@ public class GadgetShop implements ActionListener {
             double price = Double.parseDouble(priceTextField.getText());
             int weight = Integer.parseInt(weightTextField.getText());
             String size = sizeTextField.getText();
-
             MP3 newMP3 = new MP3(memory, model, price, weight, size);
             gadgets.add(newMP3);
+            viewAll();
             JOptionPane.showMessageDialog(frame, "A new MP3 is added");
-            clear();
+            clearOnlyFields();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter valid values.");
             clear();
@@ -485,6 +485,25 @@ public class GadgetShop implements ActionListener {
         addCreditTextField.setText("");
 
     }
+
+    public void clearOnlyFields() {
+        modelTextField.setText("");
+        priceTextField.setText("");
+        weightTextField.setText("");
+        sizeTextField.setText("");
+        creditTextField.setText("");
+        memoryTextField.setText("");
+        displayNumberTextField.setText("");
+        phoneNumberTextField.setText("");
+        durationTextField.setText("");
+        IdMobileTextField.setText("");
+        deleteMusicMP3TextField.setText("");
+        downloadMusicTExtField.setText("");
+        IdMP3TExtField.setText("");
+        addCreditTextField.setText("");
+
+    }
+
 
     public static void main(String[] args) {
         GadgetShop GadgetShop = new GadgetShop();
