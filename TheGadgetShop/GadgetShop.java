@@ -303,9 +303,10 @@ public class GadgetShop implements ActionListener {
                         return;
                     }
                     mobile.addCredit(amount);
-                    textAreaShowData
-                            .append("Mobile Id: " + (idMobile + 1) + " - Credit added successfully £" + amount);
                     JOptionPane.showMessageDialog(frame, "Credit added successfully!");
+                    textAreaShowData
+                            .append("Mobile Id: " + (idMobile + 1) + " - Credit added successfully £" + amount + "\n");
+                    IdMobileTextField.setText("");
                     creditTextField.setText("");
                     textAreaShowData.append("\n");
                     viewAll();
@@ -374,7 +375,8 @@ public class GadgetShop implements ActionListener {
         }
     }
 
-    public void deleteMusicMP3() {
+    public void deleteMusicMP3() 
+    {
         try {
 
             String idMP3Str = IdMP3TExtField.getText();
