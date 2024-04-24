@@ -7,10 +7,9 @@ import java.util.ArrayList;
 public class GadgetShop implements ActionListener 
 {
     private JFrame frame;
-    private JTextField IdMobileTextField, modelTextField, weightTextField, priceTextField, sizeTextField,
-            memoryTextField;
+    private JTextField IdMobileTextField,IdMP3TExtField, modelTextField, weightTextField, priceTextField, sizeTextField,memoryTextField, downloadMusicTExtField, deleteMusicMP3TextField;
     private JTextField creditTextField, displayNumberTextField, phoneNumberTextField, durationTextField;
-    private JButton addMobileButton, addMP3Button, makeACallButton, viewAllButton, clearButton, addCreditButton;
+    private JButton addMobileButton, addMP3Button, makeACallButton, viewAllButton, clearButton, addCreditButton, downloadMusicButton, deleteMusicMP3Button;
     private JTextArea textAreaShowData; // TextArea to show data
 
     private ArrayList<Gadget> gadgets = new ArrayList<>();
@@ -25,7 +24,7 @@ public class GadgetShop implements ActionListener
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Desactiva la opción de maximizar
         frame.setResizable(false);
-        frame.setSize(800, 600);
+        frame.setSize(800, 800);
 
         JPanel contentPane = new JPanel(new BorderLayout());
         contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -76,6 +75,15 @@ public class GadgetShop implements ActionListener
 
         JLabel displayNumberLabel = new JLabel("Display Number:");
         displayNumberTextField = new JTextField(20);
+        
+        JLabel IdMP3Label = new JLabel("Select Id Mobile To (Download or Delete) Music:");
+        IdMP3TExtField = new JTextField(20);
+        
+        JLabel downLoadMusicLabel = new JLabel("Download Music:");
+        downloadMusicTExtField = new JTextField(20);
+        
+        JLabel deleteMusicMP3Label = new JLabel("Delete Music:");
+        deleteMusicMP3TextField = new JTextField(20);
 
         inputPanel.add(modelLabel);
         inputPanel.add(modelTextField);
@@ -97,6 +105,15 @@ public class GadgetShop implements ActionListener
         inputPanel.add(durationTextField);
         inputPanel.add(displayNumberLabel);
         inputPanel.add(displayNumberTextField);
+        inputPanel.add(IdMP3Label);
+        inputPanel.add(IdMP3TExtField);
+        inputPanel.add(downLoadMusicLabel);
+        inputPanel.add(downloadMusicTExtField);
+        inputPanel.add(deleteMusicMP3Label);
+        inputPanel.add(deleteMusicMP3TextField);
+        
+
+
 
         // Button panel for other buttons
         JPanel buttonPanel = new JPanel(new GridLayout(0, 1, 0, 10));
@@ -123,6 +140,14 @@ public class GadgetShop implements ActionListener
         addCreditButton = new JButton("Add Credit");
         addCreditButton.addActionListener(this);
         buttonPanel.add(addCreditButton);
+        
+        downloadMusicButton = new JButton("Download Music");
+        downloadMusicButton.addActionListener(this);
+        buttonPanel.add(downloadMusicButton);
+        
+        deleteMusicMP3Button = new JButton("Delete Music");
+        deleteMusicMP3Button.addActionListener(this);
+        buttonPanel.add(deleteMusicMP3Button);
 
         clearButton = new JButton("Clear");
         clearButton.addActionListener(this);
@@ -273,8 +298,15 @@ public class GadgetShop implements ActionListener
                 if (gadget instanceof Mobile) {
                     Mobile mobile = (Mobile) gadget;
                     int amount = Integer.parseInt(creditTextField.getText());
+                    if(amount <0)
+                    {
+                        JOptionPane.showMessageDialog(frame, "Please enter a Valid Amount!");
+                        creditTextField.setText("");
+                        return;
+                    }
                     mobile.addCredit(amount);
                     JOptionPane.showMessageDialog(frame, "Credit added successfully!");
+                    creditTextField.setText("");
                     viewAll();
                 } else {
                     JOptionPane.showMessageDialog(frame, "This is not a mobile device.");
