@@ -8,7 +8,8 @@ public class GadgetShop implements ActionListener {
     private JFrame frame;
     private JTextField IdMobileTextField, IdMP3TExtField, modelTextField, weightTextField, priceTextField,
             sizeTextField, memoryTextField, downloadMusicTExtField, deleteMusicMP3TextField;
-    private JTextField creditTextField,addCreditTextField, displayNumberTextField, phoneNumberTextField, durationTextField;
+    private JTextField creditTextField, addCreditTextField, displayNumberTextField, phoneNumberTextField,
+            durationTextField;
     private JButton addMobileButton, addMP3Button, makeACallButton, viewAllButton, clearButton, addCreditButton,
             downloadMusicButton, deleteMusicMP3Button, exitButton;
 
@@ -21,157 +22,198 @@ public class GadgetShop implements ActionListener {
     }
 
     private void createGUI() {
-        frame = new JFrame("The Gadget Shop");
-       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Desactiva la opción de maximizar
+        frame = new JFrame("-----: Welcome - The Gadget Shop :-----");
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setResizable(false);
-        frame.setSize(800, 800);
+        frame.setSize(1300, 800);
 
-        JPanel contentPane = new JPanel(new BorderLayout());
+        JPanel contentPane = new JPanel(new GridLayout(1, 3));
         contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         contentPane.setBackground(Color.RED);
         frame.setContentPane(contentPane);
 
-        // Header panel with welcome message
-        JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JLabel headerLabel = new JLabel("Welcome to Gadget Shop!");
-        headerLabel.setFont(new Font("Arial", Font.BOLD, 28));
-        headerLabel.setForeground(Color.RED); // Set text color to white
-        // headerPanel.setBackground(Color.RED);
-        headerPanel.add(headerLabel);
-        contentPane.add(headerPanel, BorderLayout.NORTH);
-
-        // Input panel for mobile details
-        JPanel inputPanel = new JPanel(new GridLayout(0, 2, 10, 10));
-        inputPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
-        // inputPanel.setBackground(Color.BLUE);
-        contentPane.add(inputPanel, BorderLayout.WEST);
+         
+        // Panel 1
+        JPanel panel1 = new JPanel(new GridLayout(0, 1, 10, 10));
+        panel1.setBorder(BorderFactory.createTitledBorder("Enter Data....."));
 
         JLabel modelLabel = new JLabel("Model:");
         modelTextField = new JTextField();
-
         JLabel priceLabel = new JLabel("Price:");
-        priceTextField = new JTextField(20);
-
+        priceTextField = new JTextField();
         JLabel weightLabel = new JLabel("Weight:");
-        weightTextField = new JTextField(20);
-
+        weightTextField = new JTextField();
         JLabel sizeLabel = new JLabel("Size (12 mm x 55 mm x 5 mm):");
-        sizeTextField = new JTextField(20);
-
+        sizeTextField = new JTextField();
         JLabel creditLabel = new JLabel("Credit:");
-        creditTextField = new JTextField(20);
-
+        creditTextField = new JTextField();
         JLabel memoryLabel = new JLabel("Memory:");
-        memoryTextField = new JTextField(20);
-
-        JLabel IdMobileLabel = new JLabel("Select Id Mobile To (Call or Add Credit):");
-        IdMobileTextField = new JTextField(20);
-
-        JLabel phoneNumberLabel = new JLabel("Phone Number:");
-        phoneNumberTextField = new JTextField(20);
-
-        JLabel durationLabel = new JLabel("Duration:");
-        durationTextField = new JTextField(20);
-
-        JLabel displayNumberLabel = new JLabel("Display Number:");
-        displayNumberTextField = new JTextField(20);
-
-        JLabel addCreditLabel = new JLabel("Add Credit:");
-        addCreditTextField = new JTextField(20);
-
-        JLabel IdMP3Label = new JLabel("Select Id MP3 To (Download or Delete) Music:");
-        IdMP3TExtField = new JTextField(20);
-
-        JLabel downLoadMusicLabel = new JLabel("Download Music:");
-        downloadMusicTExtField = new JTextField(20);
-
-        JLabel deleteMusicMP3Label = new JLabel("Delete Music:");
-        deleteMusicMP3TextField = new JTextField(20);
-
-        inputPanel.add(modelLabel);
-        inputPanel.add(modelTextField);
-        inputPanel.add(priceLabel);
-        inputPanel.add(priceTextField);
-        inputPanel.add(weightLabel);
-        inputPanel.add(weightTextField);
-        inputPanel.add(sizeLabel);
-        inputPanel.add(sizeTextField);
-        inputPanel.add(creditLabel);
-        inputPanel.add(creditTextField);
-        inputPanel.add(memoryLabel);
-        inputPanel.add(memoryTextField);
-        inputPanel.add(IdMobileLabel);
-        inputPanel.add(IdMobileTextField);
-        inputPanel.add(phoneNumberLabel);
-        inputPanel.add(phoneNumberTextField);
-        inputPanel.add(durationLabel);
-        inputPanel.add(durationTextField);
-        inputPanel.add(displayNumberLabel);
-        inputPanel.add(displayNumberTextField);
-        inputPanel.add(addCreditLabel);
-        inputPanel.add(addCreditTextField);
-        inputPanel.add(IdMP3Label);
-        inputPanel.add(IdMP3TExtField);
-        inputPanel.add(downLoadMusicLabel);
-        inputPanel.add(downloadMusicTExtField);
-        inputPanel.add(deleteMusicMP3Label);
-        inputPanel.add(deleteMusicMP3TextField);
-
-        // Button panel for other buttons
-        JPanel buttonPanel = new JPanel(new GridLayout(0, 1, 0, 10));
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
-        // buttonPanel.setBackground(Color.RED);
-        contentPane.add(buttonPanel, BorderLayout.CENTER);
+        memoryTextField = new JTextField();
 
         addMobileButton = new JButton("Add Mobile");
         addMobileButton.addActionListener(this);
-        buttonPanel.add(addMobileButton);
-
         addMP3Button = new JButton("Add MP3");
         addMP3Button.addActionListener(this);
-        buttonPanel.add(addMP3Button);
-
         viewAllButton = new JButton("Show All Gadgets");
         viewAllButton.addActionListener(this);
-        buttonPanel.add(viewAllButton);
-
-        makeACallButton = new JButton("Make a Call");
-        makeACallButton.addActionListener(this);
-        buttonPanel.add(makeACallButton);
-
-        addCreditButton = new JButton("Add Credit");
-        addCreditButton.addActionListener(this);
-        buttonPanel.add(addCreditButton);
-
-        downloadMusicButton = new JButton("Download Music");
-        downloadMusicButton.addActionListener(this);
-        buttonPanel.add(downloadMusicButton);
-
-        deleteMusicMP3Button = new JButton("Delete Music");
-        deleteMusicMP3Button.addActionListener(this);
-        buttonPanel.add(deleteMusicMP3Button);
-
         clearButton = new JButton("Clear");
         clearButton.addActionListener(this);
-        buttonPanel.add(clearButton);
-
         exitButton = new JButton("Exit");
         exitButton.addActionListener(this);
-        buttonPanel.add(exitButton);
 
-        
-        // Create the panel to hold the text area
+        panel1.add(modelLabel);
+        panel1.add(modelTextField);
+        panel1.add(priceLabel);
+        panel1.add(priceTextField);
+        panel1.add(weightLabel);
+        panel1.add(weightTextField);
+        panel1.add(sizeLabel);
+        panel1.add(sizeTextField);
+        panel1.add(creditLabel);
+        panel1.add(creditTextField);
+        panel1.add(memoryLabel);
+        panel1.add(memoryTextField);
+        panel1.add(addMobileButton);
+        panel1.add(addMP3Button);
+        panel1.add(viewAllButton);
+        panel1.add(clearButton);
+        panel1.add(exitButton);
+
+        contentPane.add(panel1, BorderLayout.SOUTH);
+
+        // Panel 2
+        JPanel panel4 = new JPanel(new GridLayout(0, 1, 10, 10));
+        panel4.setBorder(BorderFactory.createTitledBorder("Call And Add Credit To The Mobilea....."));
+
+        JLabel IdMobileLabel = new JLabel("Select Id Mobile To (Call or Add Credit):");
+        IdMobileTextField = new JTextField();
+
+        JLabel phoneNumberLabel = new JLabel("Phone Number:");
+        phoneNumberTextField = new JTextField();
+
+        JLabel durationLabel = new JLabel("Duration:");
+        durationTextField = new JTextField();
+
+        JLabel displayNumberLabel = new JLabel("Display Number:");
+        displayNumberTextField = new JTextField();
+
+        JLabel addCreditLabel = new JLabel("Add Credit:");
+        addCreditTextField = new JTextField();
+
+        makeACallButton = new JButton("Make a Call");
+        addCreditButton = new JButton("Add Credit");
+
+        JButton hideButton11 = new JButton("hide1");
+        hideButton11.setVisible(false);
+        JButton hideButton21 = new JButton("hide2");
+        hideButton21.setVisible(false);
+        JButton hideButton31 = new JButton("hide3");
+        hideButton31.setVisible(false);
+        JButton hideButton41 = new JButton("hide4");
+        hideButton41.setVisible(false);
+        JButton hideButton51 = new JButton("hide5");
+        hideButton51.setVisible(false);
+
+        makeACallButton.addActionListener(this);
+        addCreditButton.addActionListener(this);
+
+        panel4.add(IdMobileLabel);
+        panel4.add(IdMobileTextField);
+        panel4.add(phoneNumberLabel);
+        panel4.add(phoneNumberTextField);
+        panel4.add(durationLabel);
+        panel4.add(durationTextField);
+        panel4.add(displayNumberLabel);
+        panel4.add(displayNumberTextField);
+        panel4.add(addCreditLabel);
+        panel4.add(addCreditTextField);
+
+        panel4.add(makeACallButton);
+        panel4.add(addCreditButton);
+        panel4.add(hideButton11);
+        panel4.add(hideButton21);
+        panel4.add(hideButton31);
+        panel4.add(hideButton41);
+        panel4.add(hideButton51);
+
+        contentPane.add(panel4, BorderLayout.SOUTH);
+
+        // Panel 3
+        JPanel panel5 = new JPanel(new GridLayout(0, 1, 10, 10));
+        panel5.setBorder(BorderFactory.createTitledBorder("Download And Delete Music From MP3....."));
+        panel5.setPreferredSize(new Dimension(300, 200));
+
+        JLabel IdMP3Label = new JLabel("Select Id MP3 To (Download or Delete) Music:");
+        IdMP3TExtField = new JTextField();
+        IdMobileTextField.setPreferredSize(new Dimension(20, 10));
+
+        JLabel downLoadMusicLabel = new JLabel("Download Music:");
+        downloadMusicTExtField = new JTextField();
+
+        JLabel deleteMusicMP3Label = new JLabel("Delete Music:");
+        deleteMusicMP3TextField = new JTextField();
+
+        downloadMusicButton = new JButton("Download Music");
+        deleteMusicMP3Button = new JButton("Delete Music");
+
+        JButton hideButton1 = new JButton();
+        hideButton1.setPreferredSize(new Dimension(1000, 1000));
+        hideButton1.setVisible(false);
+        JButton hideButton2 = new JButton("hide2");
+        hideButton2.setVisible(false);
+        JButton hideButton3 = new JButton("hide3");
+        hideButton3.setVisible(false);
+        JButton hideButton4 = new JButton("hide4");
+        hideButton4.setVisible(false);
+        JButton hideButton5 = new JButton("hide5");
+        hideButton5.setVisible(false);
+        JButton hideButton6 = new JButton("hide6");
+        hideButton6.setVisible(false);
+        JButton hideButton7 = new JButton("hide7");
+        hideButton7.setVisible(false);
+        JButton hideButton8 = new JButton("hide8");
+        hideButton8.setVisible(false);
+        JButton hideButton9 = new JButton("hide9");
+        hideButton9.setVisible(false);
+
+        downloadMusicButton.addActionListener(this);
+        deleteMusicMP3Button.addActionListener(this);
+
+        panel5.add(IdMP3Label);
+        panel5.add(IdMP3TExtField);
+        panel5.add(downLoadMusicLabel);
+        panel5.add(downloadMusicTExtField);
+        panel5.add(deleteMusicMP3Label);
+        panel5.add(deleteMusicMP3TextField);
+        panel5.add(downloadMusicButton);
+        panel5.add(deleteMusicMP3Button);
+        panel5.add(hideButton1);
+        panel5.add(hideButton2);
+        panel5.add(hideButton3);
+        panel5.add(hideButton4);
+        panel5.add(hideButton5);
+        panel5.add(hideButton6);
+        panel5.add(hideButton7);
+        panel5.add(hideButton8);
+        panel5.add(hideButton9);
+
+        contentPane.add(panel5);
+
+        // Text Area Panel
         JPanel textAreaPanel = new JPanel(new BorderLayout());
-        textAreaPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-        contentPane.add(textAreaPanel, BorderLayout.SOUTH);
-
-        textAreaShowData = new JTextArea(20, 20);
+        textAreaPanel.setBorder(BorderFactory.createTitledBorder("Show All List Data....."));
+        // Establecer una dimensión más grande para el panel
+        Dimension panelSize = new Dimension(400, textAreaPanel.getPreferredSize().height);
+        textAreaPanel.setPreferredSize(panelSize);
+        textAreaShowData = new JTextArea(20, 60);
         textAreaShowData.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textAreaShowData);
+        // Establecer una dimensión más grande para el textArea
+Dimension textAreaSize = new Dimension(800, 400); // Cambia los valores según tus necesidades
+scrollPane.setPreferredSize(textAreaSize);
         textAreaPanel.add(scrollPane, BorderLayout.CENTER);
+        contentPane.add(textAreaPanel, BorderLayout.SOUTH);
 
-        frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -196,24 +238,22 @@ public class GadgetShop implements ActionListener {
             downloadMusic();
         } else if (source == deleteMusicMP3Button) {
             deleteMusicMP3();
-        }else if (source == exitButton) {
+        } else if (source == exitButton) {
             exitButton();
         }
 
     }
 
-    private void exitButton() 
-    {
-        int choice = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Exit?", "Exit Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
-        if (choice == JOptionPane.YES_OPTION)
-         {
+    private void exitButton() {
+        int choice = JOptionPane.showConfirmDialog(frame, "Are you sure you want to Exit?", "Exit Confirmation",
+                JOptionPane.YES_NO_CANCEL_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(frame, "Thank You. Goodbye!");
             frame.dispose(); // Close the JFrame
         }
     }
 
-    public void addMobile() 
-    {
+    public void addMobile() {
         try {
 
             memoryTextField.setText("");
@@ -258,8 +298,7 @@ public class GadgetShop implements ActionListener {
 
             int idMobile = Integer.parseInt(IdMobileTextField.getText()) - 1;
             String phoneNumber = phoneNumberTextField.getText();
-            int duration = Integer.parseInt(durationTextField.getText());
-            displayNumberTextField.setText(phoneNumberTextField.getText());
+            int duration = Integer.parseInt(durationTextField.getText());            
             if (idMobile >= 0 && idMobile < gadgets.size()) {
                 Gadget gadget = gadgets.get(idMobile);
                 if (gadget instanceof Mobile) {
@@ -269,6 +308,7 @@ public class GadgetShop implements ActionListener {
                         JOptionPane.showMessageDialog(frame, "Call Was Successfully!");
                         textAreaShowData.append("Mobile Id: " + (idMobile + 1) + " " + result + "\n");
                         System.out.println("Mobile Id: " + (idMobile + 1) + " " + result + "\n");
+                        displayNumberTextField.setText(phoneNumberTextField.getText());
                         phoneNumberTextField.setText("");
                         IdMobileTextField.setText("");
                         durationTextField.setText("");
@@ -289,7 +329,7 @@ public class GadgetShop implements ActionListener {
                     clear();
                 }
             } else {
-                JOptionPane.showMessageDialog(frame, "Invalid display number");
+                JOptionPane.showMessageDialog(frame, "Invalid ID number");
                 clear();
             }
         } catch (NumberFormatException ex) {
@@ -387,8 +427,7 @@ public class GadgetShop implements ActionListener {
         }
     }
 
-    public void deleteMusicMP3() 
-    {
+    public void deleteMusicMP3() {
         try {
 
             String idMP3Str = IdMP3TExtField.getText();
@@ -439,8 +478,13 @@ public class GadgetShop implements ActionListener {
         }
     }
 
-    public void viewAll() 
-    {
+    public void viewAll() {
+        if (gadgets.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "No Data to Display! (Empty List).");
+            textAreaShowData.append("No Data to Display! (Empty List\n");
+            System.out.println("No Data to Display! (Empty List\n");
+            return;
+        }
         textAreaShowData.append("");
         // Appending a header for displaying all gadgets
         textAreaShowData.append("Display Gadgets:\n");
@@ -450,7 +494,7 @@ public class GadgetShop implements ActionListener {
             textAreaShowData.append("\n");
             System.out.println("Id: " + (gadgets.indexOf(gadget) + 1) + "\n " + gadget.display() + "\n");
             gadget.display();
-           
+
         }
         textAreaShowData.append("---------------------------------------------------------------\n");
 
@@ -493,7 +537,6 @@ public class GadgetShop implements ActionListener {
         addCreditTextField.setText("");
 
     }
-
 
     public static void main(String[] args) {
         GadgetShop GadgetShop = new GadgetShop();
