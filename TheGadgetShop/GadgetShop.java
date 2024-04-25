@@ -29,13 +29,14 @@ public class GadgetShop implements ActionListener {
 
         JPanel contentPane = new JPanel(new GridLayout(1, 3));
         contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        contentPane.setBackground(Color.RED);
+        contentPane.setBackground(Color.cyan);
         frame.setContentPane(contentPane);
 
-         
         // Panel 1
         JPanel panel1 = new JPanel(new GridLayout(0, 1, 10, 10));
         panel1.setBorder(BorderFactory.createTitledBorder("Enter Data....."));
+        panel1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panel1.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 
         JLabel modelLabel = new JLabel("Model:");
         modelTextField = new JTextField();
@@ -81,9 +82,10 @@ public class GadgetShop implements ActionListener {
 
         contentPane.add(panel1, BorderLayout.SOUTH);
 
-        // Panel 2
+        // Panel 4
         JPanel panel4 = new JPanel(new GridLayout(0, 1, 10, 10));
         panel4.setBorder(BorderFactory.createTitledBorder("Call And Add Credit To The Mobilea....."));
+        panel4.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 
         JLabel IdMobileLabel = new JLabel("Select Id Mobile To (Call or Add Credit):");
         IdMobileTextField = new JTextField();
@@ -138,10 +140,10 @@ public class GadgetShop implements ActionListener {
 
         contentPane.add(panel4, BorderLayout.SOUTH);
 
-        // Panel 3
+        // Panel 5
         JPanel panel5 = new JPanel(new GridLayout(0, 1, 10, 10));
         panel5.setBorder(BorderFactory.createTitledBorder("Download And Delete Music From MP3....."));
-        panel5.setPreferredSize(new Dimension(300, 200));
+        panel5.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 
         JLabel IdMP3Label = new JLabel("Select Id MP3 To (Download or Delete) Music:");
         IdMP3TExtField = new JTextField();
@@ -202,15 +204,13 @@ public class GadgetShop implements ActionListener {
         // Text Area Panel
         JPanel textAreaPanel = new JPanel(new BorderLayout());
         textAreaPanel.setBorder(BorderFactory.createTitledBorder("Show All List Data....."));
-        // Establecer una dimensión más grande para el panel
-        Dimension panelSize = new Dimension(400, textAreaPanel.getPreferredSize().height);
-        textAreaPanel.setPreferredSize(panelSize);
+        textAreaPanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
         textAreaShowData = new JTextArea(20, 60);
         textAreaShowData.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textAreaShowData);
         // Establecer una dimensión más grande para el textArea
-Dimension textAreaSize = new Dimension(800, 400); // Cambia los valores según tus necesidades
-scrollPane.setPreferredSize(textAreaSize);
+        Dimension textAreaSize = new Dimension(800, 400); // Cambia los valores según tus necesidades
+        scrollPane.setPreferredSize(textAreaSize);
         textAreaPanel.add(scrollPane, BorderLayout.CENTER);
         contentPane.add(textAreaPanel, BorderLayout.SOUTH);
 
@@ -298,7 +298,7 @@ scrollPane.setPreferredSize(textAreaSize);
 
             int idMobile = Integer.parseInt(IdMobileTextField.getText()) - 1;
             String phoneNumber = phoneNumberTextField.getText();
-            int duration = Integer.parseInt(durationTextField.getText());            
+            int duration = Integer.parseInt(durationTextField.getText());
             if (idMobile >= 0 && idMobile < gadgets.size()) {
                 Gadget gadget = gadgets.get(idMobile);
                 if (gadget instanceof Mobile) {
