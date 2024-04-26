@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,15 +8,33 @@ import java.util.ArrayList;
 
 public class GadgetShop implements ActionListener {
     private JFrame frame;
-    private JTextField IdMobileTextField, IdMP3TExtField, modelTextField, weightTextField, priceTextField,
-            sizeTextField, memoryTextField, downloadMusicTExtField, deleteMusicMP3TextField;
-    private JTextField creditTextField, addCreditTextField, displayNumberTextField, phoneNumberTextField,
-            durationTextField;
-    private JButton addMobileButton, addMP3Button, makeACallButton, viewAllButton, clearButton, addCreditButton,
-            downloadMusicButton, deleteMusicMP3Button, exitButton;
+    private JTextField IdMobileTextField,
+            IdMP3TExtField,
+            modelTextField,
+            weightTextField,
+            priceTextField,
+            sizeTextField,
+            memoryTextField,
+            downloadMusicTExtField,
+            deleteMusicMP3TextField;
+    private JTextField creditTextField,
+            addCreditTextField,
+            displayNumberTextField,
+            phoneNumberTextField,
+            durationTextField,
+            hiden1Field,
+            hiden2Field;
+    private JButton addMobileButton,
+            addMP3Button,
+            makeACallButton,
+            viewAllButton,
+            clearButton,
+            addCreditButton,
+            downloadMusicButton,
+            deleteMusicMP3Button,
+            exitButton;
 
     private JTextArea textAreaShowData; // TextArea to show data
-
     private ArrayList<Gadget> gadgets = new ArrayList<>();
 
     public GadgetShop() {
@@ -28,15 +48,16 @@ public class GadgetShop implements ActionListener {
         frame.setSize(1300, 800);
 
         JPanel contentPane = new JPanel(new GridLayout(1, 3));
-        contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        contentPane.setBackground(Color.cyan);
+        contentPane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        contentPane.setBackground(Color.red);
         frame.setContentPane(contentPane);
 
         // Panel 1
         JPanel panel1 = new JPanel(new GridLayout(0, 1, 10, 10));
-        panel1.setBorder(BorderFactory.createTitledBorder("Enter Data....."));
-        panel1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panel1.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         panel1.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+        panel1.setBorder(BorderFactory.createTitledBorder("Enter Data....."));
+        panel1.setBackground(Color.orange);
 
         JLabel modelLabel = new JLabel("Model:");
         modelTextField = new JTextField();
@@ -84,21 +105,19 @@ public class GadgetShop implements ActionListener {
 
         // Panel 4
         JPanel panel4 = new JPanel(new GridLayout(0, 1, 10, 10));
+        panel4.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        panel4.setBorder(BorderFactory.createLineBorder(Color.black));
         panel4.setBorder(BorderFactory.createTitledBorder("Call And Add Credit To The Mobilea....."));
-        panel4.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+        panel4.setBackground(Color.orange);
 
         JLabel IdMobileLabel = new JLabel("Select Id Mobile To (Call or Add Credit):");
         IdMobileTextField = new JTextField();
-
         JLabel phoneNumberLabel = new JLabel("Phone Number:");
         phoneNumberTextField = new JTextField();
-
         JLabel durationLabel = new JLabel("Duration:");
         durationTextField = new JTextField();
-
         JLabel displayNumberLabel = new JLabel("Display Number:");
         displayNumberTextField = new JTextField();
-
         JLabel addCreditLabel = new JLabel("Add Credit:");
         addCreditTextField = new JTextField();
 
@@ -142,22 +161,32 @@ public class GadgetShop implements ActionListener {
 
         // Panel 5
         JPanel panel5 = new JPanel(new GridLayout(0, 1, 10, 10));
-        panel5.setBorder(BorderFactory.createTitledBorder("Download And Delete Music From MP3....."));
+        panel5.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));        
         panel5.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+        panel5.setBorder(BorderFactory.createTitledBorder("Download And Delete Music From MP3....."));
+        panel5.setBackground(Color.orange);
+
+        JLabel hiden1 = new JLabel();
+        hiden1.setVisible(false);
+        hiden1Field = new JTextField();
+        hiden1Field.setVisible(false);
+
+        JLabel hiden2 = new JLabel();
+        // ImageIcon icon = new ImageIcon("images/mp31.png");
+        // hiden1.setPreferredSize(new Dimension(150, 100));
+        // hiden2.setIcon(icon);
+        hiden2.setVisible(false);
+        hiden2Field = new JTextField();
+        hiden2Field.setVisible(false);
 
         JLabel IdMP3Label = new JLabel("Select Id MP3 To (Download or Delete) Music:");
         IdMP3TExtField = new JTextField();
-        IdMobileTextField.setPreferredSize(new Dimension(20, 10));
-
         JLabel downLoadMusicLabel = new JLabel("Download Music:");
         downloadMusicTExtField = new JTextField();
-
         JLabel deleteMusicMP3Label = new JLabel("Delete Music:");
         deleteMusicMP3TextField = new JTextField();
-
         downloadMusicButton = new JButton("Download Music");
         deleteMusicMP3Button = new JButton("Delete Music");
-
         JButton hideButton1 = new JButton();
         hideButton1.setPreferredSize(new Dimension(1000, 1000));
         hideButton1.setVisible(false);
@@ -181,6 +210,10 @@ public class GadgetShop implements ActionListener {
         downloadMusicButton.addActionListener(this);
         deleteMusicMP3Button.addActionListener(this);
 
+        panel5.add(hiden1);
+        panel5.add(hiden1Field);
+        panel5.add(hiden2);
+        panel5.add(hiden2Field);
         panel5.add(IdMP3Label);
         panel5.add(IdMP3TExtField);
         panel5.add(downLoadMusicLabel);
@@ -189,10 +222,10 @@ public class GadgetShop implements ActionListener {
         panel5.add(deleteMusicMP3TextField);
         panel5.add(downloadMusicButton);
         panel5.add(deleteMusicMP3Button);
-        panel5.add(hideButton1);
-        panel5.add(hideButton2);
-        panel5.add(hideButton3);
-        panel5.add(hideButton4);
+        // panel5.add(hideButton1);
+        // panel5.add(hideButton2);
+        // panel5.add(hideButton3);
+        // panel5.add(hideButton4);
         panel5.add(hideButton5);
         panel5.add(hideButton6);
         panel5.add(hideButton7);
@@ -203,8 +236,9 @@ public class GadgetShop implements ActionListener {
 
         // Text Area Panel
         JPanel textAreaPanel = new JPanel(new BorderLayout());
-        textAreaPanel.setBorder(BorderFactory.createTitledBorder("Show All List Data....."));
+        textAreaPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));    
         textAreaPanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+        textAreaPanel.setBorder(BorderFactory.createTitledBorder("Show All List Data....."));
         textAreaShowData = new JTextArea(20, 60);
         textAreaShowData.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textAreaShowData);
