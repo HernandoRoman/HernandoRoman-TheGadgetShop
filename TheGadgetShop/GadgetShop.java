@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 // Import the necessary classes for collections
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 // Define a class named GadgetShop that implements the ActionListener interface
 public class GadgetShop implements ActionListener {
@@ -415,14 +417,37 @@ public class GadgetShop implements ActionListener {
     }
 
     // Method to make a call using a mobile gadget
-    public void makeACall() {
-        try {
+    public void makeACall() 
+    {        
+        try
+         {
             // Retrieve data from text fields
             int idMobile = Integer.parseInt(IdMobileTextField.getText()) - 1;
             String phoneNumber = phoneNumberTextField.getText();
+             // Expresión regular para validar solo números
+            String regex = "[0-9]+";
+            // Compilar la expresión regular en un patrón
+            Pattern pattern = Pattern.compile(regex);
+            // Crear un objeto Matcher para la entrada
+            Matcher matcher = pattern.matcher(phoneNumber);
+            // Verificar si la entrada coincide con el patrón
+            if (!matcher.matches())
+            {
+                // If the call is unsuccessful due to insufficient balance
+                JOptionPane.showMessageDialog(frame, "Sorry!. Entry contains only numbers and greater than equal to zero..!");
+                clear();
+                textAreaShowData.append("Sorry!. Entry contains only numbers and greater than equal to zero..!." + "\n");
+                System.out.println("Sorry!. Entry contains only numbers and greater than equal to zero..!." + "\n");                                 
+            } 
+            else 
+            {
+                System.out.println("The input contains characters that are not numbers.");                
+            }
+
             int duration = Integer.parseInt(durationTextField.getText());
             // Check if the entered ID is within the valid range
-            if (idMobile >= 0 && idMobile < gadgets.size()) {
+            if (idMobile >= 0 && idMobile < gadgets.size()) 
+            {
                 // Retrieve the gadget at the specified index
                 Gadget gadget = gadgets.get(idMobile);
                 // Check if the gadget is a Mobile instance
@@ -468,6 +493,7 @@ public class GadgetShop implements ActionListener {
             JOptionPane.showMessageDialog(frame, "Invalid input format. Please enter valid values.");
             clear();
         }
+
     }
 
     // Method to add credit to a mobile gadget
@@ -656,83 +682,81 @@ public class GadgetShop implements ActionListener {
     }
 
     // Method to display all gadgets
-public void viewAll() {
-    // Check if the gadget list is empty
-    if (gadgets.isEmpty()) {
-        // If the list is empty, notify the user
-        JOptionPane.showMessageDialog(frame, "No Data to Display! (Empty List).");
-        textAreaShowData.append("No Data to Display! (Empty List\n");
-        System.out.println("No Data to Display! (Empty List\n");
-        return;
+    public void viewAll() {
+        // Check if the gadget list is empty
+        if (gadgets.isEmpty()) {
+            // If the list is empty, notify the user
+            JOptionPane.showMessageDialog(frame, "No Data to Display! (Empty List).");
+            textAreaShowData.append("No Data to Display! (Empty List\n");
+            System.out.println("No Data to Display! (Empty List\n");
+            return;
+        }
+        // Append an empty line
+        textAreaShowData.append("");
+        // Append a header for displaying all gadgets
+        textAreaShowData.append("Display Gadgets:\n");
+        System.out.println("Display Gadgets:\n");
+        // Iterate through each gadget in the list
+        for (Gadget gadget : gadgets) {
+            // Append the ID and display information of each gadget
+            textAreaShowData.append("Id: " + (gadgets.indexOf(gadget) + 1) + "\n" + gadget.display() + "\n");
+            textAreaShowData.append("\n");
+            System.out.println("Id: " + (gadgets.indexOf(gadget) + 1) + "\n " + gadget.display() + "\n");
+            // Call the display method of the gadget
+            gadget.display();
+        }
+        // Append a separator line after displaying all gadgets
+        textAreaShowData.append("---------------------------------------------------------------\n");
     }
-    // Append an empty line
-    textAreaShowData.append("");
-    // Append a header for displaying all gadgets
-    textAreaShowData.append("Display Gadgets:\n");
-    System.out.println("Display Gadgets:\n");
-    // Iterate through each gadget in the list
-    for (Gadget gadget : gadgets) {
-        // Append the ID and display information of each gadget
-        textAreaShowData.append("Id: " + (gadgets.indexOf(gadget) + 1) + "\n" + gadget.display() + "\n");
-        textAreaShowData.append("\n");
-        System.out.println("Id: " + (gadgets.indexOf(gadget) + 1) + "\n " + gadget.display() + "\n");
-        // Call the display method of the gadget
-        gadget.display();
-    }
-    // Append a separator line after displaying all gadgets
-    textAreaShowData.append("---------------------------------------------------------------\n");
-}
 
     // Method to clear all input fields and text areas
-public void clear() {
-    // Clearing input fields
-    modelTextField.setText("");
-    priceTextField.setText("");
-    weightTextField.setText("");
-    sizeTextField.setText("");
-    creditTextField.setText("");
-    memoryTextField.setText("");
-    displayNumberTextField.setText("");
-    phoneNumberTextField.setText("");
-    durationTextField.setText("");
-    // Clearing text area
-    textAreaShowData.append(""); // Appending an empty string
-    textAreaShowData.setText(""); // Clearing the text area
-    // Clearing additional fields
-    IdMobileTextField.setText("");
-    deleteMusicMP3TextField.setText("");
-    downloadMusicTExtField.setText("");
-    IdMP3TExtField.setText("");
-    addCreditTextField.setText("");
-}
+    public void clear() {
+        // Clearing input fields
+        modelTextField.setText("");
+        priceTextField.setText("");
+        weightTextField.setText("");
+        sizeTextField.setText("");
+        creditTextField.setText("");
+        memoryTextField.setText("");
+        displayNumberTextField.setText("");
+        phoneNumberTextField.setText("");
+        durationTextField.setText("");
+        // Clearing text area
+        textAreaShowData.append(""); // Appending an empty string
+        textAreaShowData.setText(""); // Clearing the text area
+        // Clearing additional fields
+        IdMobileTextField.setText("");
+        deleteMusicMP3TextField.setText("");
+        downloadMusicTExtField.setText("");
+        IdMP3TExtField.setText("");
+        addCreditTextField.setText("");
+    }
 
+    // Method to clear only the input fields, leaving the text area and other fields
+    // intact
+    public void clearOnlyFields() {
+        // Clearing input fields
+        modelTextField.setText("");
+        priceTextField.setText("");
+        weightTextField.setText("");
+        sizeTextField.setText("");
+        creditTextField.setText("");
+        memoryTextField.setText("");
+        displayNumberTextField.setText("");
+        phoneNumberTextField.setText("");
+        durationTextField.setText("");
+        // Clearing additional fields
+        IdMobileTextField.setText("");
+        deleteMusicMP3TextField.setText("");
+        downloadMusicTExtField.setText("");
+        IdMP3TExtField.setText("");
+        addCreditTextField.setText("");
+    }
 
-   // Method to clear only the input fields, leaving the text area and other fields intact
-public void clearOnlyFields() {
-    // Clearing input fields
-    modelTextField.setText("");
-    priceTextField.setText("");
-    weightTextField.setText("");
-    sizeTextField.setText("");
-    creditTextField.setText("");
-    memoryTextField.setText("");
-    displayNumberTextField.setText("");
-    phoneNumberTextField.setText("");
-    durationTextField.setText("");
-    // Clearing additional fields
-    IdMobileTextField.setText("");
-    deleteMusicMP3TextField.setText("");
-    downloadMusicTExtField.setText("");
-    IdMP3TExtField.setText("");
-    addCreditTextField.setText("");
-}
-
-
-// Main method to start the GadgetShop application
-public static void main(String[] args) {
-    // Create an instance of the GadgetShop class to initialize the application
-    GadgetShop gadgetShop = new GadgetShop();
-}
-
+    // Main method to start the GadgetShop application
+    public static void main(String[] args) {
+        // Create an instance of the GadgetShop class to initialize the application
+        GadgetShop gadgetShop = new GadgetShop();
+    }
 
 }
