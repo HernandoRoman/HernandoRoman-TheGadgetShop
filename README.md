@@ -3,7 +3,10 @@
 
 # GUI
 
-![image](https://github.com/HernandoRoman/HernandoRoman-TheGadgetShop/assets/167904238/457b10b9-a21d-4758-be7a-ac6de951bc6a)
+![image](https://github.com/HernandoRoman/HernandoRoman-TheGadgetShop/assets/167904238/0b78372c-fdfa-4d49-9939-0adb176a2a14)
+
+
+
 
 
 
