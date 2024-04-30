@@ -426,7 +426,7 @@ public class GadgetShop implements ActionListener {
             String phoneNumber = phoneNumberTextField.getText();
              // Expresión regular para validar solo números
             String regex = "[0-9]+";
-            // Compilar la expresión regular en un patrón
+            // Compile the regular expresion  like a pattern
             Pattern pattern = Pattern.compile(regex);
             // Crear un objeto Matcher para la entrada
             Matcher matcher = pattern.matcher(phoneNumber);
