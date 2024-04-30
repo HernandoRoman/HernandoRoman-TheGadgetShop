@@ -433,7 +433,7 @@ public class GadgetShop implements ActionListener {
             // Verify if the input matches with the pattern
             if (!matcher.matches())
             {
-                // If the call is unsuccessful due to insufficient balance
+                // If the call is unsuccessful due to insufficient balance.
                 JOptionPane.showMessageDialog(frame, "Sorry!. Entry contains only numbers and greater than equal to zero..!");
                 clear();
                 textAreaShowData.append("Sorry!. Entry contains only numbers and greater than equal to zero..!." + "\n");
