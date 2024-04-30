@@ -428,9 +428,9 @@ public class GadgetShop implements ActionListener {
             String regex = "[0-9]+";
             // Compile the regular expresion  like a pattern
             Pattern pattern = Pattern.compile(regex);
-            // Crear un objeto Matcher para la entrada
+            // Create a object Matcher for input
             Matcher matcher = pattern.matcher(phoneNumber);
-            // Verificar si la entrada coincide con el patrón
+            // Verify if the input matches with the pattern
             if (!matcher.matches())
             {
                 // If the call is unsuccessful due to insufficient balance
